@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {
-  LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer,
-} from "recharts";
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState({
@@ -9,11 +6,9 @@ const Dashboard = () => {
     total_engineers: 0,
     total_chats: 0,
     total_users: 0,
-    engineers: [],
-    customers: [],
-    users: [],
-    chats_per_month: [], // Data for chat trends
-    users_per_month: [], // Data for user trends
+    engineers: [],  // Ensure engineers is initialized as an empty array
+    customers: [],  // Ensure customers is initialized as an empty array
+    users: [],      // Ensure users is initialized as an empty array
   });
 
   useEffect(() => {
@@ -35,7 +30,7 @@ const Dashboard = () => {
         {[
           `${dashboardData.total_customers} Customers`,
           `${dashboardData.total_engineers} Engineers`,
-          `${dashboardData.total_chats} Messages`,
+          `${dashboardData.total_chats} Chats`,
           `${dashboardData.total_users} Users`,
         ].map((stat, index) => (
           <div
@@ -48,49 +43,17 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* Line Charts Section */}
-      <div className="grid grid-cols-2 gap-4 mt-8">
-        {/* Chats Per Month Line Chart */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-lg font-semibold mb-4">Messages Per Month</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={dashboardData.chats_per_month}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
-              <Line type="monotone" dataKey="chats" stroke="#8884d8" strokeWidth={2} />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-
-        {/* Users Per Month Line Chart */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-lg font-semibold mb-4">Users Per Month</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={dashboardData.users_per_month}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
-              <Line type="monotone" dataKey="users" stroke="#82ca9d" strokeWidth={2} />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
       {/* Engineers Table */}
-      <TableSection title="Engineers" data={dashboardData.engineers || []} columns={["First Name", "Last Name", "Phone Number", "Start Date", "End Date", "Standby Status"]} />
+      <TableSection title="Engineers" data={dashboardData.engineers || []} columns={["First Name", "Last Name","Phone Number", "Start Date", "End Date", "Standby Status"]} />
 
       {/* Customers Table */}
-      <TableSection title="Customers" data={dashboardData.customers || []} columns={["Name", "Phone Number", "Email", "Created At"]} />
+      <TableSection title="Customers" data={dashboardData.customers || []} columns={["Name", "Phone", "Email", "Created At"]} />
 
       {/* Users Table */}
       <TableSection title="Users" data={dashboardData.users || []} columns={["UserName", "Phone Number", "Created At"]} />
     </div>
   );
 };
-
 
 const TableSection = ({ title, data = [], columns }) => {
   // Debugging log
@@ -140,7 +103,6 @@ const TableSection = ({ title, data = [], columns }) => {
     </div>
   );
 };
-
 
 // const TableSection = ({ title, data = [], columns }) => {
 //   return (

@@ -20,7 +20,7 @@ const Login = () => {
         <h2 className="text-2xl font-semibold text-center text-gray-800">
           Login
         </h2>
-        <p className="text-center text-gray-500">Access to our dashboard</p>
+        <p className="text-center text-gray-500">Get Access To Your dashboard</p>
 
         <form className="space-y-4" onSubmit={handleLogin}>
           <div>
@@ -29,7 +29,7 @@ const Login = () => {
             </label>
             <input
               type="email"
-              required
+              // required
               className="w-full px-4 py-2 mt-2 text-gray-800 bg-gray-100 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -39,11 +39,11 @@ const Login = () => {
             </label>
             <input
               type="password"
-              required
+              // required
               className="w-full px-4 py-2 mt-2 text-gray-800 bg-gray-100 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <div className="flex justify-end mt-1">
-              <a href="-" className="text-sm text-blue-500 hover:underline">
+            <div className="flex justify-left mt-1">
+              <a href="/forgot-password" className="text-sm text-blue-500 hover:underline">
                 Forgot password?
               </a>
             </div>
@@ -59,7 +59,7 @@ const Login = () => {
 
         <p className="text-center text-gray-600">
           Don't have an account?{" "}
-          <a href="-" className="text-blue-500 hover:underline">
+          <a href="/register" className="text-blue-500 hover:underline">
             Register
           </a>
         </p>

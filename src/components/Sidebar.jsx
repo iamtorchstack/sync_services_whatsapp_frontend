@@ -47,6 +47,17 @@ const Sidebar = () => {
           >
             Customers
           </NavLink>
+
+          <NavLink
+            to="/dashboard/sla"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-white text-blue-500 p-2 rounded"
+                : "hover:bg-blue-600 p-2 rounded"
+            }
+          >
+            SLA
+          </NavLink>
         </nav>
       </div>
     </div>

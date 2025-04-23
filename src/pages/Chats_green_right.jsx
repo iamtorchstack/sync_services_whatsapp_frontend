@@ -12,7 +12,6 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [messageBody, setMessageBody] = useState("");
   const [socketInstance, setSocketInstance] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(""); // State for search input
 
   useEffect(() => {
     // Fetch all users
@@ -45,11 +44,6 @@ const Chat = () => {
 
     return () => socket.disconnect();
   }, []);
-
-  // Filter users based on search term
-  const filteredUsers = users.filter(user =>
-    user.username.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   const fetchMessages = (userId) => {
     axios.get(`http://localhost:5000/api/get_messages_by_user/${userId}`)
@@ -101,40 +95,8 @@ const Chat = () => {
           Direct Chat
           <Link to="#" className="text-blue-500 hover:text-blue-700 text-lg">+</Link>
         </div>
-        {/* Search bar below Direct Chats */}
-        {/* <div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search users..."
-                    value={searchTerm}
-                    onChange={e => setSearchTerm(e.target.value)}
-                    style={{ margin: "10px 0" }}
-                  />
-        </div> */}
-
-        <div>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search Users..."
-            value={searchTerm}
-            onChange={e => setSearchTerm(e.target.value)}
-            style={{
-              margin: "10px 0",
-              width: "100%",  // Increase the width to take up more space
-              borderRadius: "20px",  // Make the corners rounded
-              padding: "10px",  // Add some padding for better UX
-              border: "1px solid #ddd",  // Light border by default
-              transition: "border 0.3s ease", // Smooth transition for border color
-            }}
-            onFocus={(e) => e.target.style.border = "2px solid #007bff"} // Change border to blue on focus
-            onBlur={(e) => e.target.style.border = "1px solid #ddd"} // Reset border when focus is lost
-          />
-        </div>
-
         <div className="h-[90vh] overflow-y-auto space-y-2">
-          {filteredUsers.map((user) => (
+          {users.map((user) => (
             <div
               key={user.id}
               className={`p-3 rounded-lg cursor-pointer flex items-center gap-3 transition-all duration-300 ${

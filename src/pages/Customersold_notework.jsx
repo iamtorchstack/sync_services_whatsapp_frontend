@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import CustomerTable from "../components/CustomerTable";
 import AddCustomerModal from "../components/AddCustomerModal";
 
@@ -7,30 +8,22 @@ const Customers = () => {
   const [searchId, setSearchId] = useState("");
   const [searchName, setSearchName] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [addCustomer, setAddCustomer] = useState(false);
+    const [addCustomer, setAddCustomer] = useState(false);
 
   useEffect(() => {
-    fetchCustomers();
-  }, []);
-
-  // Fetch customers from API
-  const fetchCustomers = () => {
     fetch("http://localhost:5000/get_customers")
       .then((response) => response.json())
-      .then((data) => {
-        console.log("Fetched customers:", data);
-        setCustomers(Array.isArray(data) ? data : [])})
+      .then((data) => setCustomers(Array.isArray(data) ? data : []))
       .catch((error) => console.error("Error fetching customers:", error));
-  };
+  }, []);
 
-  // Handle modal state
   const handleClose = () => setAddCustomer(false);
   const openModal = () => setAddCustomer(true);
 
-  // Handle search filtering
+
   const filteredCustomers = customers.filter(
     (customer) =>
-      customer.id.toLowerCase().includes(searchId.toLowerCase()) &&
+      customer.id.includes(searchId) &&
       customer.name.toLowerCase().includes(searchName.toLowerCase())
   );
 
@@ -38,19 +31,15 @@ const Customers = () => {
     <div className="flex-1 bg-gray-100 min-h-screen px-5">
       <div className="mt-5">
         <p className="text-2xl font-semibold text-gray-800 mb-1">Customers</p>
-        <p className="text-sm text-gray-500 mb-4">Dashboard / Customers</p>
+        <p className="text-sm text-gray-500 mb-4">Dashboard/Customers</p>
       </div>
-
-      {/* Add Customer Button */}
       <div className="mb-5 flex justify-end p-4">
         <button 
-          onClick={openModal}
-          className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600">
+        onClick={openModal}
+        className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600">
           + Add Customer
         </button>
       </div>
-
-      {/* Search Filters */}
       <div className="flex flex-col lg:flex-row lg:items-end lg:space-x-4 space-y-4 lg:space-y-0">
         <input
           type="text"
@@ -70,8 +59,6 @@ const Customers = () => {
           Search
         </button>
       </div>
-
-      {/* Rows per page dropdown */}
       <div className="flex items-center my-4">
         <label className="text-sm text-gray-600 mr-2">Show</label>
         <select
@@ -84,12 +71,39 @@ const Customers = () => {
           <option value={15}>15</option>
         </select>
       </div>
+      {/* <div className="mt-5">
+        <table className="w-full border-collapse border border-gray-200">
+          <thead className="bg-gray-100">
+            <tr>
+              {["Customer Name", "Customer ID", "Email", "Phone Number", "SLA Type", "Action"].map((heading) => (
+                <th
+                  key={heading}
+                  className="text-left text-gray-600 font-medium px-4 py-2 border border-gray-200"
+                >
+                  {heading}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {filteredCustomers.slice(0, rowsPerPage).map((customer) => (
+              <tr key={customer.id} className="hover:bg-gray-50">
+                <td className="px-4 py-2 border border-gray-200">{customer.name}</td>
+                <td className="px-4 py-2 border border-gray-200">{customer.id}</td>
+                <td className="px-4 py-2 border border-gray-200">{customer.email || "N/A"}</td>
+                <td className="px-4 py-2 border border-gray-200">{customer.phone_number}</td>
+                <td className="px-4 py-2 border border-gray-200">{customer.sla_type}</td>
+                <td className="px-4 py-2 border border-gray-200 text-blue-500 cursor-pointer">Edit</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div> */}
 
-      {/* Customers Table */}
+      {/* Thtis is hte code to display users */}
       <CustomerTable customers={filteredCustomers} rowsPerPage={rowsPerPage} />
-
-      {/* Add Customer Modal */}
-      {addCustomer && <AddCustomerModal onClose={handleClose} onCustomerAdded={fetchCustomers} />}
+      {/* {addEngineer && <AddEngineerModal text={"Hello world"} onClose={handleClose} />} */}
+      {addCustomer && <AddCustomerModal onClose={handleClose} />}
     </div>
   );
 };
