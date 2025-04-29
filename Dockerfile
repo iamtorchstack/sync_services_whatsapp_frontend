@@ -5,6 +5,9 @@ WORKDIR /app
 # Copy frontend source code
 COPY package*.json .
 
+# Increase memory limit for Node.js
+ENV NODE_OPTIONS=--max-old-space-size=2048
+
 #install the app dependecies
 RUN npm install
 
