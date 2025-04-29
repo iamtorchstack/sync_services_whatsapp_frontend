@@ -1,0 +1,21 @@
+# FROM node:16.15.1 AS frontend
+# FROM node:20.10.0 AS frontend
+FROM node:20-alpine
+# FROM node:20.5.1-alpine3.18
+
+WORKDIR /app/frontend
+
+# Copy frontend source code
+COPY frontend/syncsystem-dashboard/package*.json ./syncsystem-dashboard/
+
+#install the app dependecies
+RUN npm install
+
+#set port environment variable
+ENV PORT=3000
+
+#expose the port so our computer can access it
+EXPOSE 9000
+
+#run the app
+CMD ["npm", "start"]
