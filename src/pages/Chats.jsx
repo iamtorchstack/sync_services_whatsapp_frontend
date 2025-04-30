@@ -17,7 +17,7 @@ const Chat = () => {
   useEffect(() => {
     // Fetch all users
     // axios.get("http://localhost:5000/api/users")
-    axios.get("http://10.250.12.134:5000/api/users")
+    axios.get("https://syncserviceswhatsappbackend-production.up.railway.app/api/users")
       .then((response) => {
         const userData = response.data.map(user => ({
           id: user.id,
@@ -29,7 +29,7 @@ const Chat = () => {
 
     // Initialize WebSocket connection
     // const socket = io("http://localhost:5000", { transports: ["websocket"] });
-    const socket = io("http://10.250.12.134:5000", { transports: ["websocket"] });
+    const socket = io("https://syncserviceswhatsappbackend-production.up.railway.app", { transports: ["websocket"] });
 
     setSocketInstance(socket);
 
