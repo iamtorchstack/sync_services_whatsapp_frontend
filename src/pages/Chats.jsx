@@ -78,7 +78,7 @@ const Chat = () => {
       };
 
       // const response = await axios.post("http://localhost:5000/send_message", payload, {
-      const response = await axios.post("http://10.250.12.134:5000/send_message", payload, {
+      const response = await axios.post("https://syncserviceswhatsappbackend-production.up.railway.app/send_message", payload, {
         headers: { "Content-Type": "application/json" }
       });
 
