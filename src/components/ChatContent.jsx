@@ -42,7 +42,7 @@ const ChatContent = ({ messages }) => {
             <div className="mt-2">
               <img
                 // src={`http://localhost:5000/image/${message.image_id}`}  // Replace with actual image URL
-                src={`http://localhost:5000/image/${message.image_id}.jpg`}  // Replace with actual image URL
+                src={`syncserviceswhatsappbackend-production.up.railway.app/image/${message.image_id}.jpg`}  // Replace with actual image URL
                 alt="Message"
                 className="max-w-full rounded-lg"
               />
@@ -58,7 +58,7 @@ const ChatContent = ({ messages }) => {
               >
                 <source
                   // src={`http://localhost:5000/video/${message.video_id}`}  // Replace with actual video URL
-                  src={`http://localhost:5000/video/${message.video_id}.mp4`}  // Replace with actual video URL
+                  src={`syncserviceswhatsappbackend-production.up.railway.app/video/${message.video_id}.mp4`}  // Replace with actual video URL
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
