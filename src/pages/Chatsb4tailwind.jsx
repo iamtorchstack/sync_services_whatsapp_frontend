@@ -13,7 +13,8 @@ const Chat = () => {
 
   useEffect(() => {
     // Fetch users from Flask backend
-    fetch("http://localhost:5000/api/users")
+    // fetch("http://localhost:5000/api/users")
+    fetch("https://syncserviceswhatsappbackend-production.up.railway.app/api/users")
       .then((response) => response.json())
       .then((data) => {
         // Assuming data is an array of user objects with id and username

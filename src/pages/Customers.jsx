@@ -15,7 +15,8 @@ const Customers = () => {
 
   // Fetch customers from API
   const fetchCustomers = () => {
-    fetch("http://localhost:5000/get_customers")
+    // fetch("http://localhost:5000/get_customers")
+    fetch("https://syncserviceswhatsappbackend-production.up.railway.app/get_customers")
       .then((response) => response.json())
       .then((data) => {
         console.log("Fetched customers:", data);

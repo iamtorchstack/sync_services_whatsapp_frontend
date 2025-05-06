@@ -15,7 +15,9 @@ const Chat = () => {
 
   useEffect(() => {
     // Fetch all users
-    axios.get("http://localhost:5000/api/users")
+    
+    // axios.get("http://localhost:5000/api/users")
+    axios.get("https://syncserviceswhatsappbackend-production.up.railway.app/api/users")
       .then((response) => {
         const userData = response.data.map(user => ({
           id: user.id,
@@ -26,7 +28,9 @@ const Chat = () => {
       .catch((error) => console.error("Error fetching users:", error));
 
     // Initialize WebSocket connection
-    const socket = io("http://localhost:5000", { transports: ["websocket"] });
+    
+    // const socket = io("http://localhost:5000", { transports: ["websocket"] });
+    const socket = io("https://syncserviceswhatsappbackend-production.up.railway.app:5000", { transports: ["websocket"] });
 
     setSocketInstance(socket);
 
@@ -46,7 +50,8 @@ const Chat = () => {
   }, []);
 
   const fetchMessages = (userId) => {
-    axios.get(`http://localhost:5000/api/get_messages_by_user/${userId}`)
+    // axios.get(`http://localhost:5000/api/get_messages_by_user/${userId}`)
+    axios.get(`https://syncserviceswhatsappbackend-production.up.railway.app/api/get_messages_by_user/${userId}`)
       .then((response) => {
         setMessages(response.data);
       })
@@ -68,7 +73,8 @@ const Chat = () => {
         isTyped: "True"
       };
 
-      const response = await axios.post("http://localhost:5000/send_message", payload, {
+      // const response = await axios.post("http://localhost:5000/send_message", payload, {
+      const response = await axios.post("https://syncserviceswhatsappbackend-production.up.railway.app/send_message", payload, {
         headers: { "Content-Type": "application/json" }
       });
 

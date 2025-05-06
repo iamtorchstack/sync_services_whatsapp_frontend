@@ -8,7 +8,8 @@ const EditCustomerModal = ({ customer, onClose, onCustomerUpdated }) => {
 
   // Fetch available SLA types
   useEffect(() => {
-    fetch("http://localhost:5000/get_sla_types")
+    // fetch("http://localhost:5000/get_sla_types")
+    fetch("https://syncserviceswhatsappbackend-production.up.railway.app/get_sla_types")
       .then((response) => response.json())
       .then((data) => setSlaTypes(Array.isArray(data) ? data : []))
       .catch((error) => console.error("Error fetching SLA types:", error));
@@ -24,7 +25,9 @@ const EditCustomerModal = ({ customer, onClose, onCustomerUpdated }) => {
     setError("");
 
     try {
-      const response = await fetch(`http://localhost:5000/update_customer/${customer.id}`, {
+      
+      // const response = await fetch(`http://localhost:5000/update_customer/${customer.id}`, {
+      const response = await fetch(`https://syncserviceswhatsappbackend-production.up.railway.app/update_customer/${customer.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

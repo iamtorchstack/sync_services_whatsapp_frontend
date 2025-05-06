@@ -20,7 +20,8 @@ const Chat = () => {
   const [socketInstance, setSocketInstance] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/users")
+    // fetch("http://localhost:5000/api/users")
+    fetch("https://syncserviceswhatsappbackend-production.up.railway.app/api/users")
       .then((response) => response.json())
       .then((data) => {
         const userData = data.map((user) => ({ id: user.id, username: user.username }));
@@ -31,7 +32,8 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    const socket = io("http://localhost:5000", {
+    // const socket = io("http://localhost:5000", {
+    const socket = io("https://syncserviceswhatsappbackend-production.up.railway.app", {
       transports: ["websocket"],
       cors: {
         origin: "http://localhost:3000",
@@ -98,7 +100,8 @@ const Chat = () => {
       };
   
       // Make the POST request to Flask API to send a message
-      const response = await axios.post('http://localhost:5000/send_message', payload, {
+      // const response = await axios.post('http://localhost:5000/send_message', payload, {
+      const response = await axios.post('https://syncserviceswhatsappbackend-production.up.railway.app/send_message', payload, {
         headers: {
           'Content-Type': 'application/json',
         },

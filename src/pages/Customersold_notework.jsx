@@ -11,7 +11,8 @@ const Customers = () => {
     const [addCustomer, setAddCustomer] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/get_customers")
+    // fetch("http://localhost:5000/get_customers")
+    fetch("https://syncserviceswhatsappbackend-production.up.railway.app/get_customers")
       .then((response) => response.json())
       .then((data) => setCustomers(Array.isArray(data) ? data : []))
       .catch((error) => console.error("Error fetching customers:", error));

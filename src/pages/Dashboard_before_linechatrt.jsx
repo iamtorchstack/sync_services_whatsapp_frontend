@@ -12,7 +12,8 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/dashboard_data")
+    // fetch("http://localhost:5000/dashboard_data")
+    fetch("https://syncserviceswhatsappbackend-production.up.railway.app/dashboard_data")  
       .then((response) => response.json())
       .then((data) => setDashboardData(data))
       .catch((error) => console.error("Error fetching dashboard data:", error));

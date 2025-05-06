@@ -9,7 +9,8 @@ const SLA = () => {
   const [addSLA, setAddSLA] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/get_slas")
+    // fetch("http://localhost:5000/get_slas")
+    fetch("https://syncserviceswhatsappbackend-production.up.railway.app/get_slas")
       .then((response) => response.json())
       .then((data) => setSlas(Array.isArray(data) ? data : []))
       .catch((error) => console.error("Error fetching SLAs:", error));

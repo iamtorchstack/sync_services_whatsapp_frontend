@@ -6,7 +6,8 @@ const Chat = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/users")
+    // fetch("http://localhost:5000/api/users")
+    fetch("https://syncserviceswhatsappbackend-production.up.railway.app/api/users")
       .then((response) => response.json())
       .then((data) => {
         const userData = data.map((user) => ({ id: user.id, username: user.username }));

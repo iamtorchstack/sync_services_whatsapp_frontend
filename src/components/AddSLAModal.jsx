@@ -16,7 +16,9 @@ const AddSLAModal = ({ onClose }) => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:5000/add_sla", {
+      
+      // const response = await fetch("http://localhost:5000/add_sla", {
+      const response = await fetch("https://syncserviceswhatsappbackend-production.up.railway.app/add_sla", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)

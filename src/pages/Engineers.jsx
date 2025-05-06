@@ -22,7 +22,8 @@ const Engineers = () => {
   // }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/get_engineers")
+    // fetch("http://localhost:5000/get_engineers")
+    fetch("https://syncserviceswhatsappbackend-production.up.railway.app/get_engineers")
       .then((response) => response.json())
       .then((data) => {
         console.log("Fetched engineers:", data);

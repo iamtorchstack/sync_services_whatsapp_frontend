@@ -14,7 +14,8 @@ const Customers = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/get_customers")
+    // fetch("http://localhost:5000/get_customers")
+    fetch("https://syncserviceswhatsappbackend-production.up.railway.app/get_customers")
       .then((response) => response.json())
       .then((data) => {
         console.log("Fetched customers:", data);
@@ -30,7 +31,8 @@ const Customers = () => {
   );
 
   const handleAddCustomer = () => {
-    fetch("http://localhost:5000/add_customer", {
+    // fetch("http://localhost:5000/add_customer", {
+    fetch("https://syncserviceswhatsappbackend-production.up.railway.app/add_customer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
